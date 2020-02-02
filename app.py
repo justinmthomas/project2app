@@ -53,8 +53,8 @@ from sqlalchemy import create_engine
 
 
 #Keep config file for our info. 
-from config import remote_db_endpoint, remote_db_port
-from config import remote_gwsis_dbname, remote_gwsis_dbuser, remote_gwsis_dbpwd
+#from config import remote_db_endpoint, remote_db_port
+#from config import remote_gwsis_dbname, remote_gwsis_dbuser, remote_gwsis_dbpwd
 
 
 # In[8]:
