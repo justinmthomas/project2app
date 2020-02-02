@@ -137,56 +137,5 @@ def postJsonHandler():
 app.run(host='127.0.0.1', port= 5000)
 
 
-# In[ ]:
 
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-parsed = json.loads(content)
-print json.dumps(parsed, indent=4, sort_keys=True)
-
-
-# In[ ]:
-
-
-
-# def update_survey():
-#     orders_entries = []
-#     for orders in data["all_orders"]:
-#         new_entry = SalesOrders(order_id=orders['id'],
-#                                 order_number=orders['number'])
-#         orders_entries.append(new_entry)
-#     db.session.add_all(orders_entries)
-#     db.session.commit()
-
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
-
-# In[ ]:
-
-
-# @app.route("/send", methods=["GET", "POST"])
-# def send():
-#     if request.method == "POST":
-#         nickname = request.form["nickname"]
-#         age = request.form["age"]
-#         pet = Pet(nickname=nickname, age=age)
-#         db.session.add(pet)
-#         db.session.commit()
-
-#         return "Thanks for the form data!"
-
-#     return render_template("form.html")
 
