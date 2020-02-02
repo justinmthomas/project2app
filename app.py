@@ -9,7 +9,7 @@
 
 # In[2]:
 
-
+import os
 import pandas as pd
 import sqlalchemy
 import pymysql
@@ -84,9 +84,6 @@ conn = engine.connect()
 
 app = Flask(__name__)
 CORS(app)
-
-
-
 
 
 
