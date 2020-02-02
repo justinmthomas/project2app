@@ -9,7 +9,7 @@
 
 # In[2]:
 
-port = int(os.environ.get('PORT', 5000))
+
 import pandas as pd
 import sqlalchemy
 import pymysql
