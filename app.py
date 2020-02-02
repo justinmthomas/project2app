@@ -85,24 +85,9 @@ conn = engine.connect()
 app = Flask(__name__)
 CORS(app)
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = ""
-
-#db = SQLAlchemy(app)
-
-
-# In[ ]:
 
 
 
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
@@ -112,18 +97,15 @@ def postJsonHandler():
     # read in JSON from POST requuest into content 
     content = request.get_json()
     print(content)
-    
-    
+        
     #extract Survey ID from first entry in JSON "Survey ID"
     survey_id = (content["Survey_ID"])
     print(survey_id)
-    
-    
+        
     ## Create Survey Dataframe form "result" entry in JSON
     survey_df = pd.DataFrame(content["result"])
    
     #set column names of dataframe
-   
    
     survey_df.insert(0, "Survey_ID", 'null')
     survey_df["Survey_ID"] = survey_id
@@ -136,10 +118,6 @@ def postJsonHandler():
     survey_df.to_sql(con=conn, name='survey_results', if_exists='append', index=False)
     #session.commit()
     return jsonify(content)
-
-#     for key, value in content.items():
-#         setattr(survey_results, key, value) 
-
 
 #app.run(host='127.0.0.1', port)
 
