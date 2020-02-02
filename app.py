@@ -9,7 +9,7 @@
 
 # In[2]:
 
-
+port = int(os.environ.get('PORT', 5000))
 import pandas as pd
 import sqlalchemy
 import pymysql
@@ -141,7 +141,7 @@ def postJsonHandler():
 #         setattr(survey_results, key, value) 
 
 
-#app.run(host='127.0.0.1', port= 5000)
+app.run(host='127.0.0.1', port)
 
 
 
