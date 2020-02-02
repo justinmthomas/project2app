@@ -53,6 +53,13 @@ from sqlalchemy import create_engine
 
 
 #Keep config file for our info. 
+remote_db_endpoint = (os.environ['remote_db_endpoint'])
+remote_db_port = (os.environ['remote_db_port'])
+remote_gwsis_dbname = (os.environ['remote_gwsis_dbname'])
+remote_gwsis_dbpwd = (os.environ['remote_gwsis_dbpwd'])
+remote_gwsis_dbuser = (os.environ['remote_gwsis_dbuser'])
+
+
 #from config import remote_db_endpoint, remote_db_port
 #from config import remote_gwsis_dbname, remote_gwsis_dbuser, remote_gwsis_dbpwd
 
