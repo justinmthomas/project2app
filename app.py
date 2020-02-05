@@ -87,7 +87,6 @@ CORS(app)
 
 
 
-
 @app.route('/postjson', methods = ['POST'])
 def postJsonHandler():
     print (request.is_json)
@@ -115,6 +114,44 @@ def postJsonHandler():
     survey_df.to_sql(con=conn, name='survey_results', if_exists='append', index=False)
     #session.commit()
     return jsonify(content)
+
+@app.route("/datavisualization")
+def resultsAnalysis():
+    """Return the Results analysis page."""
+    return render_template("What_Are_Data_Visualizations.html")
+
+@app.route("/quizexplained")
+def quizExplained():
+    """Return the Results analysis page."""
+    return render_template("Quiz_Explained.html")
+
+@app.route("/visualquiz")
+def visualQuiz():
+    """Return the Results analysis page."""
+    return render_template("Visual_Quiz.html")
+
+
+@app.route("/api/data/results", methods=["GET", "POST"])
+def getSurveyResults():
+    surveyResults = pd.read_sql(
+        "SELECT value as QuestionNo, SUM(correct) AS NumCorrect, COUNT(*) AS NumAttempted, SUM(correct)/COUNT(*) AS PctCorrect FROM survey_results GROUP BY value", conn)
+
+    return surveyResults.to_json(orient='records')
+
+@app.route("/api/data/newresults", methods=["GET", "POST"])
+def getNewSurveyResults():
+    newResults = pd.read_sql(
+        "SELECT COUNT(Distinct Survey_ID) AS numberOFattempts, COUNT(Value) AS questionsAnswered, (SUM(correct) / COUNT(*)) * 100 AS pctCorrect, SUM(correct) AS numCorrect, SUM(correct != 1) as numIncorrect FROM survey_results.survey_results", conn)
+    return newResults.to_json(orient='records')
+
+
+@app.route("/api/data/resultsavg", methods=["GET", "POST"])
+def getAvgSurveyResults():
+    avgResults = pd.read_sql(
+        "select value as Question_Num, Data_Type, Chart_Type, sum(Correct) AS numCorrect, (sum(Correct) / (COUNT(Distinct Survey_ID))) * 100 As percent_correct from survey_results.survey_results group by value", conn)
+    return avgResults.to_json(orient='records')
+
+
 
 #app.run(host='127.0.0.1', port)
 
