@@ -141,7 +141,7 @@ def getSurveyResults():
 @app.route("/api/data/newresults", methods=["GET", "POST"])
 def getNewSurveyResults():
     newResults = pd.read_sql(
-        "SELECT COUNT(Distinct Survey_ID) AS numberOFattempts, COUNT(Value) AS questionsAnswered, (SUM(correct) / COUNT(*)) * 100 AS pctCorrect, SUM(correct) AS numCorrect, SUM(correct != 1) as numIncorrect FROM survey_results.survey_results", conn)
+        "SELECT COUNT(Distinct Survey_ID) AS numberOFattempts, COUNT(Value) AS questionsAnswered, (SUM(correct) / COUNT(*)) * 100 AS pctCorrect, SUM(correct) AS numCorrect, SUM(correct != 1) as numIncorrect,  SUM(correct)/COUNT(Distinct Survey_ID) AS avgScore FROM survey_results.survey_results", conn)
     return newResults.to_json(orient='records')
 
 
