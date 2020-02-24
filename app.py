@@ -6,7 +6,7 @@
 
 #pip install flask-cors
 
-pip install boto3
+#pip install boto3
 # In[2]:
 
 import os

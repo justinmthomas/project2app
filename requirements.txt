@@ -29,4 +29,5 @@ pandas==0.25.1
 pandas-io==0.0.1
 pandocfilters==1.4.2
 PyMySQL==0.9.3
+boto3==7.8.9
 
