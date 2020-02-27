@@ -1,24 +1,27 @@
-from flask import Flask, render_template, url_for, request
+#!/usr/bin/env python
+# coding: utf-8
+
+# Flask Packages
+from flask import Flask, render_template, request, url_for, jsonify
 from flask_bootstrap import Bootstrap
-from flask_uploads import UploadSet,configure_uploads,ALL,DATA
+from flask_uploads import UploadSet, configure_uploads, IMAGES, DATA, ALL
+from flask_sqlalchemy import SQLAlchemy
+
+from sqlalchemy import create_engine
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from flask_cors import CORS
+
+pymysql.install_as_MySQLdb()
+
 from werkzeug import secure_filename
-
-ml_app = Flask(__name__)
-Bootstrap(ml_app)
-
-# Configuration
-
-files =UploadSet('files',ALL)
-app.config['UPLOADED_FILES_DEST'] = 'static/uploadstorage'
-configure_uploads(ml_app,files)
-
 import os
 import datetime
 import time
 
-#EDA Packages
 
-import pandas as pd 
+# EDA Packages
+import pandas as pd
 import numpy as np
 
 # ML Packages
@@ -30,76 +33,116 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
+
 # ML Packages For Vectorization of Text For Feature Extraction
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
+app = Flask(__name__)
+Bootstrap(app)
+db = SQLAlchemy(app)
+
+# Configuration for File Uploads into CLOUD DATABASE.
+# files = UploadSet('files', ALL)
+# app.config['UPLOADED_FILES_DEST'] = 'static/uploadsDB'
+# configure_uploads(app, files)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///static/uploadsDB/filestorage.db'
+# #Keep config file for our info.
+remote_db_endpoint = os.environ.get('remote_db_endpoint')
+remote_db_port = os.environ.get('remote_db_port')
+remote_gwsis_dbname = os.environ.get('remote_gwsis_dbname')
+remote_gwsis_dbpwd = os.environ.get('remote_gwsis_dbpwd')
+remote_gwsis_dbuser = os.environ.get('remote_gwsis_dbuser')
+
+# Saving Data To Database Storage
+engine = create_engine(
+	f"mysql+pymysql://{remote_gwsis_dbuser}:{remote_gwsis_dbpwd}@{remote_db_endpoint}:{remote_db_port}/{remote_gwsis_dbname}")
+
+conn = engine.connect()
+
+class FileContents(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(300))
+	modeldata = db.Column(db.String(300))
+	data = db.Column(db.LargeBinary)
+
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+	return render_template('index.html')
 
-@app.route('/xlsuploads', methods=['GET', 'POST'])
-def xlsuploads():
-    if request.method == 'POST' and 'csv_data' in request.files:
-         file = request.files['csv_data']
-         filename = secure_filename(file.filename)
-         file.save(os.path.join('static/uploadstorage',filename))
+# Route for our Processing and Details Page
+@app.route('/dataupload', methods=['GET', 'POST'])
+def dataupload():
+	if request.method == 'POST' and 'csv_data' in request.files:
+	file = request.files['csv_data']
+	filename = secure_filename(file.filename)
+	# os.path.join is used so that paths work in every operating system
+        # file.save(os.path.join("wherever","you","want",filename))
+	file.save(os.path.join('static/uploadsDB', filename))
+	fullfile = os.path.join('static/uploadsDB', filename)
 
-        #DATE
-        date = str(datetime.datetime.fromtimestamp(time.time())).strftime("%Y-%m-%d %H:%M:%S"))
+	# For Time
+	date = str(datetime.datetime.fromtimestamp(
+            time.time()).strftime("%Y-%m-%d %H:%M:%S"))
 
-         #EDA FUNCTION
-         df = pd.read_csv(os.path.join('static/uploadstorage',filename))
-         df_size = df.size
-         df_shape = df.shape
-         df_columns = list(df.columns)
-         df_targetname = df[df.columns[-1]].name
-         df_featurenames = df_columns[0:-1]
-         #SELECT ALL COLUMNS UNTIL THE LAST COLUMN
-         df_Xfeatures = df.iloc[:, 0:-1]
-         #SELECT THE LAST COLUMN AS TARGET
-         df_YLabels = df[df.columns[-1]]
-         #df_Ylabels = df.iloc[:,-1]
+	# EDA function
+	df = pd.read_csv(os.path.join('static/uploadsDB', filename))
+	df_size = df.size
+	df_shape = df.shape
+	df_columns = list(df.columns)
+	df_targetname = df[df.columns[-1]].name
+	df_featurenames = df_columns[0:-1]  # select all columns till last column
+	df_Xfeatures = df.iloc[:, 0:-1]
+	df_Ylabels = df[df.columns[-1]]  # Select the last column as target
+	# same as above df_Ylabels = df.iloc[:,-1]
 
-         #TABLE
-         df_table = df
+	# Model Building
+	X = df_Xfeatures
+	Y = df_Ylabels
+	seed = 7
+	# prepare models
+	models = []
+	models.append(('LR', LogisticRegression()))
+	models.append(('LDA', LinearDiscriminantAnalysis()))
+	models.append(('KNN', KNeighborsClassifier()))
+	models.append(('CART', DecisionTreeClassifier()))
+	models.append(('NB', GaussianNB()))
+	models.append(('SVM', SVC()))
+	# evaluate each model in turn
 
-         X = df_Xfeatures
-         Y = df_YLabels
-         
-        #BUILD MODEL
-        models = []
-        models.append(('LR', LogisticRegression()))
-        models.append(('LDA', LinearDiscriminantAnalysis()))
-        models.append(('KNN', KNeighborsClassifier()))
-        models.append(('CART', DecisionTreeClassifier()))
-        models.append(('NB', GaussianNB()))
-        models.append(('SVM', SVC()))
+	results = []
+	names = []
+	allmodels = []
+	scoring = 'accuracy'
+	for name, model in models:
+	kfold = model_selection.KFold(n_splits=10, random_state=seed)
+	cv_results = model_selection.cross_val_score(
+            model, X, Y, cv=kfold, scoring=scoring)
+	results.append(cv_results)
+	names.append(name)
+	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+	allmodels.append(msg)
+	model_results = results
+	model_names = names
 
-        #EVALUATE EACH MODEL
-        
-        results = []
-        names = []
-        allmodels = []
-        scoring = 'accuracy'
-        best_scores = list([])
-        for name, model in models:
-            kfold = model_selection.KFold(n_splits=10, random_state=seed)
-            cv_results = model_selection.cross_val_score(model, X, Y, cv=kfold, scoring=scoring)
+	# Saving Results of Uploaded Files  to Sqlite DB
+	newfile = FileContents(name=file.filename, data=file.read(), modeldata=msg)
+	db.session.add(newfile)
+	db.session.commit()
 
-            results.append(cv_results)
-            names.append(name)
-            msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
-            allmodels.append(msg)
-            model_results = results
-            model_names = names
+	return render_template('details.html', filename=filename, date=date,
+                        df_size=df_size,
+                        df_shape=df_shape,
+                        df_columns=df_columns,
+                        df_targetname=df_targetname,
+                        model_results=allmodels,
+                        model_names=names,
+                        fullfile=fullfile,
+                        dfplot=df
+                        )
 
-    return render_template('details.html', filename=filename, df_table=df,
-    date=date,
-    df_shape=df_shape,
-    df_columns=df_columns,
-    df_targetname=df_targetname,
-    model_results=allmodels,
-    model_names=names,
-    fullfile=fullfile)
+
+if __name__ == '__main__':
+	app.run(debug=True)
