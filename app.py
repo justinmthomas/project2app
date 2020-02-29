@@ -164,9 +164,9 @@ def upload_file():
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
-        file = request.files['file']
-        file_df = pd.read_csv(file)
-            return file_df 
+    file = request.files['file']
+    file_df = pd.read_csv(file)
+    return file_df 
     
 
 
