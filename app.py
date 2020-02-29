@@ -144,6 +144,14 @@ def getSurveyResults():
 
     return surveyResults.to_json(orient='records')
 
+# app route to access all survey results 
+@app.route("/api/data/raw_results", methods=["GET", "POST"])
+def getRaw_SurveyResults():
+    surveyResults = pd.read_sql(
+        "SELECT * FROM survey_results", conn)
+
+    return surveyResults.to_json(orient='records')
+
 @app.route("/api/data/newresults", methods=["GET", "POST"])
 def getNewSurveyResults():
     newResults = pd.read_sql(
