@@ -161,11 +161,12 @@ def getAvgSurveyResults():
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-    file = request.files['file']
-    file_df = pd.read_csv(file)
+        #if 'file' not in request.files:
+          #  flash('No file part')
+           # return redirect(request.url)
+     file = request.files['file']
+     file_df = pd.read_csv(file)
+     print(file_df)
     if request.method == 'GET':
         return file_df 
     
