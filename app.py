@@ -171,7 +171,10 @@ def upload_file():
         return file_df 
     
 
-
+@app.route('/headers', methods=['GET'])
+def print_headers():
+    headers = list(file.df)
+    return headers
 
 #app.run(host='127.0.0.1', port)
 
