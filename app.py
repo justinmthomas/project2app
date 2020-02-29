@@ -166,7 +166,7 @@ def upload_file():
             return redirect(request.url)
     file = request.files['file']
     file_df = pd.read_csv(file)
-    if request.method == 'GET'
+    if request.method == 'GET':
         return file_df 
     
 
