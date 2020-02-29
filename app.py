@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 #pip install flask-cors
 
 #pip install boto3
-# In[2]:
 
 import os
 import pandas as pd
@@ -23,39 +19,16 @@ from flask import Flask, render_template, request, redirect, url_for
 
 #Import JSON library and Amazon BOTO3 SDK library for Python
 import json, boto3
-
-# In[3]:
-
-
-
 from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-
-
-# In[4]:
-
-
 from flask import (
     Flask,
     render_template,
     jsonify,
     request)
-
-
-# In[5]:
-
-
 from flask_cors import CORS
-
-
-# In[6]:
-
-
 from sqlalchemy import create_engine
-
-
-# In[7]:
 
 
 #Keep config file for our info. 
@@ -70,24 +43,11 @@ remote_gwsis_dbuser = os.environ.get('remote_gwsis_dbuser')
 #from config import remote_gwsis_dbname, remote_gwsis_dbuser, remote_gwsis_dbpwd
 
 
-# In[8]:
-
-
 #Create Cloud DB Connection. 
 engine = create_engine(f"mysql+pymysql://{remote_gwsis_dbuser}:{remote_gwsis_dbpwd}@{remote_db_endpoint}:{remote_db_port}/{remote_gwsis_dbname}")
 
-
-# In[9]:
-
-
-
 # Create remote DB connection.
-conn = engine.connect()   
-
-
-# In[10]:
-
-
+conn = engine.connect()
 app = Flask(__name__)
 CORS(app)
 
