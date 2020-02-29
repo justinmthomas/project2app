@@ -49,17 +49,17 @@ db = SQLAlchemy(app)
 # configure_uploads(app, files)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///static/uploadsDB/filestorage.db'
 # #Keep config file for our info.
-remote_db_endpoint = os.environ.get('remote_db_endpoint')
-remote_db_port = os.environ.get('remote_db_port')
-remote_gwsis_dbname = os.environ.get('remote_gwsis_dbname')
-remote_gwsis_dbpwd = os.environ.get('remote_gwsis_dbpwd')
-remote_gwsis_dbuser = os.environ.get('remote_gwsis_dbuser')
+# remote_db_endpoint = os.environ.get('remote_db_endpoint')
+# remote_db_port = os.environ.get('remote_db_port')
+# remote_gwsis_dbname = os.environ.get('remote_gwsis_dbname')
+# remote_gwsis_dbpwd = os.environ.get('remote_gwsis_dbpwd')
+# remote_gwsis_dbuser = os.environ.get('remote_gwsis_dbuser')
 
-# Saving Data To Database Storage
-engine = create_engine(
-	f"mysql+pymysql://{remote_gwsis_dbuser}:{remote_gwsis_dbpwd}@{remote_db_endpoint}:{remote_db_port}/{remote_gwsis_dbname}")
+# # Saving Data To Database Storage
+# engine = create_engine(
+# 	f"mysql+pymysql://{remote_gwsis_dbuser}:{remote_gwsis_dbpwd}@{remote_db_endpoint}:{remote_db_port}/{remote_gwsis_dbname}")
 
-conn = engine.connect()
+# conn = engine.connect()
 
 class FileContents(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
