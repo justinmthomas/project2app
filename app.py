@@ -133,7 +133,13 @@ def upload_file():
           #  flash('No file part')
            # return redirect(request.url)
      file = request.files['file']
-     file_df = pd.read_csv(file, engine='python')
+    # look at the first ten thousand bytes to guess the character encoding
+     with open('file', 'rb') as rawdata:
+        result = chardet.detect(rawdata.read(10000))
+     # check what the character encoding might be
+     print(result)
+
+     file_df = pd.read_csv(file, engine='python', encoding = result)
      print(file_df)
     if request.method == 'GET':
         return file_df 
