@@ -12,7 +12,7 @@ import pymysql
 import sys
 from pandas.io.json import json_normalize
 pymysql.install_as_MySQLdb()
-
+import chardet
 
 #Importing additional elemtns for S3 self signed URL generation
 from flask import Flask, render_template, request, redirect, url_for
