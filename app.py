@@ -137,7 +137,7 @@ def upload_file():
      
     result = chardet.detect(file.stream.read(10000))
      # check what the character encoding might be
-     print(result)
+    print(result)
 
      file_df = pd.read_csv(file, engine='python', encoding = result)
      print(file_df)
