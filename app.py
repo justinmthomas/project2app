@@ -141,10 +141,7 @@ def upload_file():
 
     file_df = pd.read_csv(file, engine='python', encoding = result['encoding'])
     print(file_df)
-   if request.method == 'GET':
-        return file_df 
     
-
 @app.route('/headers', methods=['GET'])
 def print_headers():
     headers = list(file.df)
