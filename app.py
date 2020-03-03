@@ -139,8 +139,8 @@ def upload_file():
      # check what the character encoding might be
     print(result)
 
-    file_df = pd.read_csv(file, engine='python', encoding = result)
-    print(file_df)
+   # file_df = pd.read_csv(file, engine='python', encoding = result)
+    #print(file_df)
     if request.method == 'GET':
         return file_df 
     
