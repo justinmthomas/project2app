@@ -134,8 +134,8 @@ def upload_file():
            # return redirect(request.url)
      file = request.files['file']
     # look at the first ten thousand bytes to guess the character encoding
-     with open(file, 'rb') as rawdata:
-        result = chardet.detect(rawdata(10000))
+     
+    result = chardet.detect(file.stream.read(10000))
      # check what the character encoding might be
      print(result)
 
