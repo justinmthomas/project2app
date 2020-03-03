@@ -138,10 +138,10 @@ def upload_file():
     result = chardet.detect(file.read(10000))
      # check what the character encoding might be
     print(result)
+    print(result['encoding'])
+    #file_df = pd.read_csv(file, engine='python', encoding = result['encoding'])
+    #print(file_df)
 
-    file_df = pd.read_csv(file, engine='python', encoding = result['encoding'])
-    print(file_df)
-    
 @app.route('/headers', methods=['GET'])
 def print_headers():
     headers = list(file.df)
