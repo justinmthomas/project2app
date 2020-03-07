@@ -171,12 +171,6 @@ def print_headers():
 
 @app.route('/DASH', methods=['GET'])
 
-    colors = {
-        "graphBackground": "#F5F5F5",
-        "background": "#ffffff",
-        "text": "#000000"
-    }
-
     app.layout = html.Div([
         dcc.Upload(
             id='upload-data',
