@@ -33,4 +33,9 @@ boto3==1.12.4
 chardet==3.0.4
 plotly==4.5.3
 dash==1.9.1
+dash-core-components==1.8.1
+dash-html-components==1.0.2
+dash-renderer==1.2.4
+dash-table==4.6.1
 cufflinks==0.17.3
+

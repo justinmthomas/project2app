@@ -14,6 +14,20 @@ from pandas.io.json import json_normalize
 pymysql.install_as_MySQLdb()
 import chardet
 
+#import dash dependencies
+import base64
+import datetime
+import io
+import plotly.graph_objs as go
+import cufflinks as cf
+import dash
+from dash.dependencies import Input, Output, State
+import dash_core_components as dcc
+import dash_html_components as html
+import dash_table
+import dash_bootstrap_components as dbc
+import chart_library as cl
+
 #Importing additional elemtns for S3 self signed URL generation
 from flask import Flask, render_template, request, redirect, url_for
 
