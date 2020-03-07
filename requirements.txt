@@ -31,3 +31,6 @@ pandocfilters==1.4.2
 PyMySQL==0.9.3
 boto3==1.12.4
 chardet==3.0.4
+plotly==4.5.3
+dash==1.9.1
+cufflinks==0.17.3
