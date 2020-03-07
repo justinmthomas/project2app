@@ -164,7 +164,7 @@ def print_headers():
 
 app = dash.Dash(
     __name__,
-    server=server,
+    server=app,
     routes_pathname_prefix='/dash/'
 )
 app.config['suppress_callback_exceptions'] = True
