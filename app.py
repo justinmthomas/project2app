@@ -65,7 +65,7 @@ conn = engine.connect()
 app = Flask(__name__)
 CORS(app)
 
-
+server = flask.Flask(__name__)
 
 @app.route('/postjson', methods = ['POST'])
 def postJsonHandler():
@@ -164,7 +164,7 @@ def print_headers():
 
 app = dash.Dash(
     __name__,
-    server=app,
+    server=server,
     routes_pathname_prefix='/dash/'
 )
 app.config['suppress_callback_exceptions'] = True
