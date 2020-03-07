@@ -3,12 +3,12 @@ import plotly.graph_objects as go
 import plotly.io as pio
 import plotly.express as px
 
-df = pd.read_csv(r"C:\Users\Aaron\Documents\GW_Data_Course\AIsaacson_GW_HW\GW_Project2\sources\Quiz_results_29FEB_noon.csv")
-df.head()
+# df = pd.read_csv(r"C:\Users\Aaron\Documents\GW_Data_Course\AIsaacson_GW_HW\GW_Project2\sources\Quiz_results_29FEB_noon.csv")
+# df.head()
 
-a=df['Data_Type']
-c=df['Chart_Type']
-b=df['Correct']
+# a=df['Data_Type']
+# c=df['Chart_Type']
+# b=df['Correct']
 
 def bar_function(x,y): 
 
