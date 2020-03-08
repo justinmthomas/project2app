@@ -74,7 +74,7 @@ def index():
     return 'Hello Flask app'
 
 
-@app.route('/postjson', methods = ['POST'])
+@server.route('/postjson', methods = ['POST'])
 def postJsonHandler():
     print (request.is_json)
     # read in JSON from POST requuest into content 
@@ -102,23 +102,23 @@ def postJsonHandler():
     #session.commit()
     return jsonify(content)
 
-@app.route("/datavisualization")
+@server.route("/datavisualization")
 def resultsAnalysis():
     """Return the Results analysis page."""
     return render_template("What_Are_Data_Visualizations.html")
 
-@app.route("/quizexplained")
+@server.route("/quizexplained")
 def quizExplained():
     """Return the Results analysis page."""
     return render_template("Quiz_Explained.html")
 
-@app.route("/visualquiz")
+@server.route("/visualquiz")
 def visualQuiz():
     """Return the Results analysis page."""
     return render_template("Visual_Quiz.html")
 
 
-@app.route("/api/data/results", methods=["GET", "POST"])
+@server.route("/api/data/results", methods=["GET", "POST"])
 def getSurveyResults():
     surveyResults = pd.read_sql(
         "SELECT value as QuestionNo, SUM(correct) AS NumCorrect, COUNT(*) AS NumAttempted, SUM(correct)/COUNT(*) AS PctCorrect FROM survey_results GROUP BY value", conn)
@@ -126,27 +126,27 @@ def getSurveyResults():
     return surveyResults.to_json(orient='records')
 
 # app route to access all survey results 
-@app.route("/api/data/raw_results", methods=["GET", "POST"])
+@server.route("/api/data/raw_results", methods=["GET", "POST"])
 def getRaw_SurveyResults():
     surveyResults = pd.read_sql(
         "SELECT * FROM survey_results", conn)
 
     return surveyResults.to_json(orient='records')
 
-@app.route("/api/data/newresults", methods=["GET", "POST"])
+@server.route("/api/data/newresults", methods=["GET", "POST"])
 def getNewSurveyResults():
     newResults = pd.read_sql(
         "SELECT COUNT(Distinct Survey_ID) AS numberOFattempts, COUNT(Value) AS questionsAnswered, (SUM(correct) / COUNT(*)) * 100 AS pctCorrect, SUM(correct) AS numCorrect, SUM(correct != 1) as numIncorrect,  SUM(correct)/COUNT(Distinct Survey_ID) AS avgScore FROM survey_results.survey_results", conn)
     return newResults.to_json(orient='records')
 
 
-@app.route("/api/data/resultsavg", methods=["GET", "POST"])
+@server.route("/api/data/resultsavg", methods=["GET", "POST"])
 def getAvgSurveyResults():
     avgResults = pd.read_sql(
         "select value as Question_Num, Data_Type, Chart_Type, sum(Correct) AS numCorrect, (sum(Correct) / (COUNT(Distinct Survey_ID))) * 100 As percent_correct from survey_results.survey_results group by value", conn)
     return avgResults.to_json(orient='records')
 
-@app.route('/upload', methods=['GET', 'POST'])
+@server.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -163,7 +163,7 @@ def upload_file():
     file_df = pd.read_csv(file,encoding=result['encoding'])
     print(file_df)
 
-@app.route('/headers', methods=['GET'])
+@server.route('/headers', methods=['GET'])
 def print_headers():
     headers = list(file.df)
     return headers
