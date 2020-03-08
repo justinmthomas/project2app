@@ -164,11 +164,11 @@ def print_headers():
     headers = list(file.df)
     return headers
 
-app2 = dash.Dash(__name__, external_stylesheets=external_stylesheets,server=server,
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets,server=server,
     routes_pathname_prefix='/dash/')
 
 
-app2.config['suppress_callback_exceptions'] = True
+app.config['suppress_callback_exceptions'] = True
 
 colors = {
     "graphBackground": "#F5F5F5",
@@ -176,7 +176,7 @@ colors = {
     "text": "#000000"
 }
 
-app2.layout = html.Div([
+app.layout = html.Div([
     dcc.Upload(
         id='upload-data',
         children=html.Div([
@@ -246,7 +246,7 @@ def parse_data(contents, filename):
 
     return df
 
-@app2.callback(
+@app.callback(
 
                 Output('output-column-upload', 'options'),
 
@@ -285,7 +285,7 @@ def update_columns(n_clicks_update, contents, filename):
 
         return column_head
 
-@app2.callback(
+@app.callback(
                 Output('complete-upload', 'children'),
 
                 [Input('upload-data', 'filename')]
@@ -301,7 +301,7 @@ def upload_complete(filename):
         return [html.Li(filename) for filename in filename]
 
 
-@app2.callback(
+@app.callback(
     Output('display-selected-values', 'children'),
     [Input('output-column-upload', 'value')]
     )
