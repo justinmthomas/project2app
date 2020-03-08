@@ -164,7 +164,8 @@ def print_headers():
     headers = list(file.df)
     return headers
 
-app2 = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app2 = dash.Dash(__name__, external_stylesheets=external_stylesheets,server=server,
+    routes_pathname_prefix='/dash/')
 server = app2.server
 
 app2.config['suppress_callback_exceptions'] = True
