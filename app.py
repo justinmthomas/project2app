@@ -67,8 +67,12 @@ conn = engine.connect()
 app = Flask(__name__)
 CORS(app)
 
-app2 = dash.Dash(__name__)
-server = app2.server
+server = flask.Flask(__name__)
+
+@server.route('/')
+def index():
+    return 'Hello Flask app'
+
 
 @app.route('/postjson', methods = ['POST'])
 def postJsonHandler():
