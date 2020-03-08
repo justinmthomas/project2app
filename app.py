@@ -67,7 +67,7 @@ conn = engine.connect()
 app = Flask(__name__)
 CORS(app)
 
-server = flask.Flask(__name__)
+server = Flask(__name__)
 
 @server.route('/')
 def index():
