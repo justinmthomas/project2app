@@ -27,7 +27,7 @@ import dash_html_components as html
 import dash_table
 import dash_bootstrap_components as dbc
 import chart_library as cl
-imoprt itertools as it
+import itertools as it
 import decision_tree as dt
 import flask
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
