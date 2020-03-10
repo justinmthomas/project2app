@@ -249,6 +249,12 @@ app.layout = html.Div([
     #         style = {'display': 'none'}),
 
     dcc.Store(id='complete-df'),
+    html.Div(id ='mydropdown-1', style = {'display': 'none'}),
+    html.Div(id ='mydropdown-2', style = {'display': 'none'}),
+    html.Div(id ='mydropdown-3', style = {'display': 'none'}),
+    html.Div(id ='mydropdown-4', style = {'display': 'none'}),
+    html.Div(id ='mydropdown-5', style = {'display': 'none'}),
+    html.Div(id ='mydropdown-6', style = {'display': 'none'}),
 
     # html.Div(id='display-selected-values'),
     html.Br(),
