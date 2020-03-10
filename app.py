@@ -475,7 +475,7 @@ def update_columns(values):
 @app.callback(
                 Output('dropdown-values6', 'children'),
                 [
-                Input('submit-button', 'n_clicks'),
+                Input('submit_button', 'n_clicks'),
                 Input('choosen_columns_data', 'value'),
                 Input('complete-df', 'data'),
                 ],
@@ -628,7 +628,7 @@ def update_columns6(n_clicks, ddvalues,
 @app.callback(
                 Output('dropdown-values5', 'children'),
                 [
-                Input('submit-button', 'n_clicks'),
+                Input('submit_button', 'n_clicks'),
                 Input('choosen_columns_data', 'value'),
                 Input('complete-df', 'data'),
                 ],
@@ -774,7 +774,7 @@ def update_columns5(n_clicks, ddvalues,
 @app.callback(
                 Output('dropdown-values4', 'children'),
                 [
-                Input('submit-button', 'n_clicks'),
+                Input('submit_button', 'n_clicks'),
                 Input('choosen_columns_data', 'value'),
                 Input('complete-df', 'data'),
                 ],
@@ -915,7 +915,7 @@ def update_columns4(n_clicks, ddvalues,
 @app.callback(
                 Output('dropdown-values3', 'children'),
                 [
-                Input('submit-button', 'n_clicks'),
+                Input('submit_button', 'n_clicks'),
                 Input('choosen_columns_data', 'value'),
                 Input('complete-df', 'data'),
                 ],
@@ -1050,7 +1050,7 @@ def update_columns3(n_clicks, ddvalues,
 @app.callback(
                 Output('dropdown-values2', 'children'),
                 [
-                Input('submit-button', 'n_clicks'),
+                Input('submit_button', 'n_clicks'),
                 Input('choosen_columns_data', 'value'),
                 Input('complete-df', 'data'),
                 ],
