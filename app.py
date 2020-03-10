@@ -172,6 +172,7 @@ def print_headers():
 
 app = dash.Dash(__name__,
                 external_stylesheets=external_stylesheets,
+                routes_pathname_prefix='/dash/',
                 meta_tags=[{
                     'name': 'viewport',
                     'content': 'width=device-width, initial-scale=1.0'
