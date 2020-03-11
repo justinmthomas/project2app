@@ -169,9 +169,3 @@ def upload_file():
 def print_headers():
     headers = list(file.df)
     return headers
-
-
-
-
-
-
