@@ -156,12 +156,6 @@ app.layout = html.Div([
 
     dcc.Store(id='complete-df'),
 
-    # html.Div(id ='mydropdown-1', style = {'display': 'none'}),
-    # html.Div(id ='mydropdown-2', style = {'display': 'none'}),
-    # html.Div(id ='mydropdown-3', style = {'display': 'none'}),
-    # html.Div(id ='mydropdown-4', style = {'display': 'none'}),
-    # html.Div(id ='mydropdown-5', style = {'display': 'none'}),
-    # html.Div(id ='mydropdown-6', style = {'display': 'none'}),
 
     # html.Div(id='display-selected-values'),
     html.Br(),
@@ -170,6 +164,14 @@ app.layout = html.Div([
     html.Div(id='choosen_columns_data'),
     html.Br(),
     html.Div(id='submit_button'),
+
+    # html.Label(id ='mydropdown-1', style = {'display': 'none'}),
+    # html.Label(id ='mydropdown-2', style = {'display': 'none'}),
+    # html.Label(id ='mydropdown-3', style = {'display': 'none'}),
+    # html.Label(id ='mydropdown-4', style = {'display': 'none'}),
+    # html.Label(id ='mydropdown-5', style = {'display': 'none'}),
+    # html.Label(id ='mydropdown-6', style = {'display': 'none'}),
+
     html.Br(),
     html.Label(id='dropdown-values2'),
     html.Label(id='dropdown-values3'),
@@ -462,19 +464,19 @@ def update_columns6(
 
 
         for p in all_pairs2:
-
+            # print(list(p.values()))
             data_pairsv.append(list(p.values()))
 
         for p in all_pairs2:
- 
+            # print(list(p.keys()))
             data_pairsk.append(list(p.keys()))
 
         for p in all_pairs3:
-      
+            # print(list(p.values()))
             data_pairsv.append(list(p.values()))
 
         for p in all_pairs3:
-       
+            # print(list(p.keys()))
             data_pairsk.append(list(p.keys()))
 
         for v in data_pairsv:
