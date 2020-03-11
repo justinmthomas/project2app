@@ -159,29 +159,29 @@ def pie_function(x,y):
             )
         }
 
-        
-
-    def scatter_function(x,y): 
-        return px.scatter (
-            x = x,
-            y = y)
 
 
+def scatter_function(x,y): 
+    return px.scatter (
+        x = x,
+        y = y)
 
 
-    def bubble_function (x,y):
-        # g=pd.Series(y)
-        # t=pd.cut(y, bins=6).max()
-        # print (t)
-        categories, edges = pd.cut(y, 6, retbins=True, duplicates='drop', labels=False)
-        df = pd.DataFrame({'original':y,
-                    'bin_max': edges[1:][categories]},
-                    columns = ['original', 'bin_max'])
-        s = df['bin_max'].unique()
 
-        return px.scatter(
-            x=x,
-            y=y,
-            size=y
-            # color=[0, 1, 2, 3]
-        )            
+
+def bubble_function (x,y):
+    # g=pd.Series(y)
+    # t=pd.cut(y, bins=6).max()
+    # print (t)
+    categories, edges = pd.cut(y, 6, retbins=True, duplicates='drop', labels=False)
+    df = pd.DataFrame({'original':y,
+                'bin_max': edges[1:][categories]},
+                columns = ['original', 'bin_max'])
+    s = df['bin_max'].unique()
+
+    return px.scatter(
+        x=x,
+        y=y,
+        size=y
+        # color=[0, 1, 2, 3]
+    )            
