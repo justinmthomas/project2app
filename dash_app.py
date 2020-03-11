@@ -802,6 +802,8 @@ def update_columns4(n_clicks, ddvalues,
 
         zippedpairs = zip(data_pairsk1, data_pairsv1)
         finalpairs = dict(zippedpairs)
+
+        print(finalpairs)
         
         for k,v in finalpairs.items():
             if v == "CATvsVAL":
@@ -950,6 +952,8 @@ def update_columns3(n_clicks, ddvalues,
 
         zippedpairs = zip(data_pairsk1, data_pairsv1)
         finalpairs = dict(zippedpairs)
+
+        print(finalpairs)
         
         for k,v in finalpairs.items():
             if v == "CATvsVAL":
@@ -1093,6 +1097,8 @@ def update_columns2(n_clicks, ddvalues,
 
         zippedpairs = zip(data_pairsk1, data_pairsv1)
         finalpairs = dict(zippedpairs)
+
+        print(finalpairs)
         
         for k,v in finalpairs.items():
             if v == "CATvsVAL":
