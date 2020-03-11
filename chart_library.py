@@ -158,3 +158,8 @@ def pie_function(x,y):
                 )]
             )
         }
+
+def map_function (x,y):
+    return px.scatter_geo( 
+        locations=x,
+        color=y)
