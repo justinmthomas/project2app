@@ -408,9 +408,10 @@ def update_columns(values):
                 ]
             )
 
-def update_columns6(n_clicks, ddvalues,
+def update_columns6(
+                    n_clicks,
+                    ddvalues,
                     dfdata, 
-                    # contents, filename,
                     dd1class, dd1value,
                     dd2class, dd2value,
                     dd3class, dd3value,
@@ -447,7 +448,12 @@ def update_columns6(n_clicks, ddvalues,
         d = dict(zipped)
 
 
-        all_pairs = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+        all_pairs3 = [{j: d[j] for j in i} for i in it.permutations(d, 3)]
+        all_pairs2 = [{j: d[j] for j in i} for i in it.permutations(d, 2)]
+
+        # all_pairs3 = [{j: d[j] for j in i} for i in it.combinations(d, 3)]
+        # all_pairs2 = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+      
 
         data_pairsv = []
         data_pairsk = []
@@ -455,11 +461,19 @@ def update_columns6(n_clicks, ddvalues,
         data_pairsk1 = []
 
 
-        for p in all_pairs:
+        for p in all_pairs2:
             # print(list(p.values()))
             data_pairsv.append(list(p.values()))
 
-        for p in all_pairs:
+        for p in all_pairs2:
+            # print(list(p.keys()))
+            data_pairsk.append(list(p.keys()))
+
+        for p in all_pairs3:
+            # print(list(p.values()))
+            data_pairsv.append(list(p.values()))
+
+        for p in all_pairs3:
             # print(list(p.keys()))
             data_pairsk.append(list(p.keys()))
 
@@ -471,6 +485,8 @@ def update_columns6(n_clicks, ddvalues,
 
         zippedpairs = zip(data_pairsk1, data_pairsv1)
         finalpairs = dict(zippedpairs)
+
+        # print(finalpairs)
         
         for k,v in finalpairs.items():
             if v == "CATvsVAL":
@@ -592,7 +608,12 @@ def update_columns5(n_clicks, ddvalues,
         d = dict(zipped)
 
 
-        all_pairs = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+        all_pairs3 = [{j: d[j] for j in i} for i in it.permutations(d, 3)]
+        all_pairs2 = [{j: d[j] for j in i} for i in it.permutations(d, 2)]
+
+        # all_pairs3 = [{j: d[j] for j in i} for i in it.combinations(d, 3)]
+        # all_pairs2 = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+      
 
         data_pairsv = []
         data_pairsk = []
@@ -600,11 +621,19 @@ def update_columns5(n_clicks, ddvalues,
         data_pairsk1 = []
 
 
-        for p in all_pairs:
+        for p in all_pairs2:
             # print(list(p.values()))
             data_pairsv.append(list(p.values()))
 
-        for p in all_pairs:
+        for p in all_pairs2:
+            # print(list(p.keys()))
+            data_pairsk.append(list(p.keys()))
+
+        for p in all_pairs3:
+            # print(list(p.values()))
+            data_pairsv.append(list(p.values()))
+
+        for p in all_pairs3:
             # print(list(p.keys()))
             data_pairsk.append(list(p.keys()))
 
@@ -734,7 +763,12 @@ def update_columns4(n_clicks, ddvalues,
         d = dict(zipped)
 
 
-        all_pairs = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+        all_pairs3 = [{j: d[j] for j in i} for i in it.permutations(d, 3)]
+        all_pairs2 = [{j: d[j] for j in i} for i in it.permutations(d, 2)]
+
+        # all_pairs3 = [{j: d[j] for j in i} for i in it.combinations(d, 3)]
+        # all_pairs2 = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+      
 
         data_pairsv = []
         data_pairsk = []
@@ -742,11 +776,19 @@ def update_columns4(n_clicks, ddvalues,
         data_pairsk1 = []
 
 
-        for p in all_pairs:
+        for p in all_pairs2:
             # print(list(p.values()))
             data_pairsv.append(list(p.values()))
 
-        for p in all_pairs:
+        for p in all_pairs2:
+            # print(list(p.keys()))
+            data_pairsk.append(list(p.keys()))
+
+        for p in all_pairs3:
+            # print(list(p.values()))
+            data_pairsv.append(list(p.values()))
+
+        for p in all_pairs3:
             # print(list(p.keys()))
             data_pairsk.append(list(p.keys()))
 
@@ -869,7 +911,12 @@ def update_columns3(n_clicks, ddvalues,
         d = dict(zipped)
 
 
-        all_pairs = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+        all_pairs3 = [{j: d[j] for j in i} for i in it.permutations(d, 3)]
+        all_pairs2 = [{j: d[j] for j in i} for i in it.permutations(d, 2)]
+
+        # all_pairs3 = [{j: d[j] for j in i} for i in it.combinations(d, 3)]
+        # all_pairs2 = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+      
 
         data_pairsv = []
         data_pairsk = []
@@ -877,11 +924,19 @@ def update_columns3(n_clicks, ddvalues,
         data_pairsk1 = []
 
 
-        for p in all_pairs:
+        for p in all_pairs2:
             # print(list(p.values()))
             data_pairsv.append(list(p.values()))
 
-        for p in all_pairs:
+        for p in all_pairs2:
+            # print(list(p.keys()))
+            data_pairsk.append(list(p.keys()))
+
+        for p in all_pairs3:
+            # print(list(p.values()))
+            data_pairsv.append(list(p.values()))
+
+        for p in all_pairs3:
             # print(list(p.keys()))
             data_pairsk.append(list(p.keys()))
 
@@ -999,7 +1054,12 @@ def update_columns2(n_clicks, ddvalues,
         d = dict(zipped)
 
 
-        all_pairs = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+        all_pairs3 = [{j: d[j] for j in i} for i in it.permutations(d, 3)]
+        all_pairs2 = [{j: d[j] for j in i} for i in it.permutations(d, 2)]
+
+        # all_pairs3 = [{j: d[j] for j in i} for i in it.combinations(d, 3)]
+        # all_pairs2 = [{j: d[j] for j in i} for i in it.combinations(d, 2)]
+      
 
         data_pairsv = []
         data_pairsk = []
@@ -1007,11 +1067,19 @@ def update_columns2(n_clicks, ddvalues,
         data_pairsk1 = []
 
 
-        for p in all_pairs:
+        for p in all_pairs2:
             # print(list(p.values()))
             data_pairsv.append(list(p.values()))
 
-        for p in all_pairs:
+        for p in all_pairs2:
+            # print(list(p.keys()))
+            data_pairsk.append(list(p.keys()))
+
+        for p in all_pairs3:
+            # print(list(p.values()))
+            data_pairsv.append(list(p.values()))
+
+        for p in all_pairs3:
             # print(list(p.keys()))
             data_pairsk.append(list(p.keys()))
 
