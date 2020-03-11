@@ -131,7 +131,7 @@ def getSurveyResults():
 @server.route("/api/data/raw_results", methods=["GET", "POST"])
 def getRaw_SurveyResults():
     surveyResults = pd.read_sql(
-        "SELECT * FROM survey_results LIMIT 100", conn)
+        "SELECT * FROM survey_results", conn)
 
     return surveyResults.to_json(orient='records')
 
