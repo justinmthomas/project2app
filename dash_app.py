@@ -462,19 +462,19 @@ def update_columns6(
 
 
         for p in all_pairs2:
-            # print(list(p.values()))
+
             data_pairsv.append(list(p.values()))
 
         for p in all_pairs2:
-            # print(list(p.keys()))
+ 
             data_pairsk.append(list(p.keys()))
 
         for p in all_pairs3:
-            # print(list(p.values()))
+      
             data_pairsv.append(list(p.values()))
 
         for p in all_pairs3:
-            # print(list(p.keys()))
+       
             data_pairsk.append(list(p.keys()))
 
         for v in data_pairsv:
