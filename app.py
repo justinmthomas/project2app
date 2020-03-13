@@ -70,7 +70,7 @@ app = flask.Flask(__name__)
 CORS(app)
 
 server = flask.Flask(__name__)
-
+CORS(server)
 @server.route('/')
 def index():
     return 'Hello Flask app'
