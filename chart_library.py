@@ -139,7 +139,7 @@ def pie_function(x,y):
                 dict(
                 target = 'text', func = 'sum', enabled = True),
                 ]),
-                )]
+                ]
             )],
 
         'layout' : dict(
