@@ -66,8 +66,8 @@ engine = create_engine(f"mysql+pymysql://{remote_gwsis_dbuser}:{remote_gwsis_dbp
 
 # Create remote DB connection.
 conn = engine.connect()
-app = flask.Flask(__name__)
-CORS(app)
+#app = flask.Flask(__name__)
+#CORS(app)
 
 server = flask.Flask(__name__)
 CORS(server)
