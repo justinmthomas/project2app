@@ -91,11 +91,12 @@ def postFeedbackHandler(feedback1):
     # survey_df["Survey_ID"] = survey_id
     # survey_df.columns = ["Survey_ID", "value", "Data_Type", "Chart_Type", "Correct"]
     # print (survey_df)
-       
+    print(feedback1)
     print('sql started')
 
     feedback1 = feedback1[["Survey_ID", "value", "Data_Type", "Chart_Type", "Correct"]]
-  
+    print(feedback1)
+    
     #write surve.df to SQL 
     feedback1.to_sql(con=conn, name='survey_results', if_exists='append', index=False)
     #session.commit()
@@ -366,6 +367,50 @@ def decision_func(d):
             del fp[k]   
 
     return fp
+
+def feedback_func(rvalue):
+
+    try:
+        if len(rvalue) is None:
+            print("radio empty")
+            return []
+        else:
+            
+            radioval=rvalue.split(',')
+
+            datatype = feedback_maker(radioval[2])
+
+            if radioval[0] == 'y':
+                feedback = dict(
+                    Survey_ID=generateSecureRandomString(),
+                    value='data_upload_response',
+                    Data_Type=datatype,
+                    Chart_Type=radioval[1],
+                    Correct=1
+                    )
+                feedback = pd.DataFrame([feedback])
+                feedback = feedback.reindex(columns=["Survey_ID", "value", "Data_Type", "Chart_Type", "Correct"])
+                print(feedback)
+                
+
+            elif radioval[0] == 'n':
+                feedback = dict(
+                    Survey_ID=generateSecureRandomString(),
+                    value='data_upload_response',
+                    Data_Type=datatype,
+                    Chart_Type=radioval[1],
+                    Correct=0
+                    )
+                feedback = pd.DataFrame([feedback])
+                feedback = feedback.reindex(columns=["Survey_ID", "value", "Data_Type", "Chart_Type", "Correct"])
+                print(feedback)
+                
+
+            # return None
+            return postFeedbackHandler(feedback)
+    except:
+        None
+
 
 ####start dash app scripting#####
 
@@ -1159,47 +1204,7 @@ def update_columns2(n_clicks, ddvalues,
             )
 
 def radio_output1(
-                    # n_clicks,
-                    radiovalue
-                    ):
+                radiovalue
+                ):
 
-    try:
-        if len(radiovalue) is None:
-            print("radio empty")
-            return []
-        else:
-            
-            radioval=radiovalue.split(',')
-
-            datatype = feedback_maker(radioval[2])
-
-            if radioval[0] == 'y':
-                feedback = dict(
-                    Survery_ID=generateSecureRandomString(),
-                    value='data_upload_response',
-                    Data_Type=datatype,
-                    Chart_Type=radioval[1],
-                    Correct=1
-                    )
-                feedback = pd.DataFrame([feedback])
-    
-                print(feedback)
-                # print(f'"Survery_ID":"{generateSecureRandomString()}","value":"data_upload_response","Data_Type":"{datatype}","Chart_Type":"{radioval[1]}","Correct":1')
-
-            elif radioval[0] == 'n':
-                feedback = dict(
-                    Survery_ID=generateSecureRandomString(),
-                    value='data_upload_response',
-                    Data_Type=datatype,
-                    Chart_Type=radioval[1],
-                    Correct=0
-                    )
-                feedback = pd.DataFrame([feedback])
-    
-                print(feedback)
-                # print(f'"Survery_ID":"{generateSecureRandomString()}","value":"data_upload_response","Data_Type":"{datatype}","Chart_Type":"{radioval[1]}","Correct":0')
-
-            # return None
-            return postFeedbackHandler(feedback)
-    except:
-        None
+    feedback_func(radiovalue)
