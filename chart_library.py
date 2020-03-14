@@ -230,3 +230,11 @@ def map_function (x,y,z):
     fig = dict( data=data, layout=layout )  
 
     return fig
+
+def chart_function (x,df):
+    
+    return dash_table.DataTable(
+        id= 'table',
+        columns=[{'name': i, 'id': i} for i in df],
+        data=df.to_dict('rows')
+        )

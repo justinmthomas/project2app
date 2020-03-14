@@ -208,8 +208,8 @@ def graph_maker(df,pairs):
                     ]))
         elif v[0] == "Table":
             charts.append(html.Div([
-                    dcc.Graph(id=f'auto-graph{chartnum}',
-                    figure=cl.table_function(xval,yval)),
+                    html.Div(id=f'auto-graph{chartnum}',
+                    children=cl.chart_function(xval,df)),
                     html.Label("Does the above chart show what you wanted?"),
                     dcc.RadioItems(
                         id=f'auto-graph-radio{chartnum}',
