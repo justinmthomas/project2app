@@ -97,6 +97,7 @@ def postFeedbackHandler(feedback1):
     #write surve.df to SQL 
     feedback1.to_sql(con=conn, name='survey_results', if_exists='append', index=False)
     #session.commit()
+    print('sql fired')
     return None
 
 
