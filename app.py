@@ -92,7 +92,9 @@ def postFeedbackHandler(feedback1):
     # survey_df.columns = ["Survey_ID", "value", "Data_Type", "Chart_Type", "Correct"]
     # print (survey_df)
        
-    #[print(key, value) for key, value in content.items()] 
+    print('sql started')
+
+    feedback1 = feedback1[["Survey_ID", "value", "Data_Type", "Chart_Type", "Correct"]]
   
     #write surve.df to SQL 
     feedback1.to_sql(con=conn, name='survey_results', if_exists='append', index=False)
