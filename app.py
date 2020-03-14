@@ -73,31 +73,11 @@ def index():
 
 @server.route('/postfeedback', methods = ['POST'])
 def postFeedbackHandler(feedback1):
-    # print (request.is_json)
-    # # read in JSON from POST requuest into content 
-    # content = request.get_json()
-    # print(content)
-        
-    #extract Survey ID from first entry in JSON "Survey ID"
-    # survey_id = (content["Survey_ID"])
-    # print(survey_id)
-        
-    # ## Create Survey Dataframe form "result" entry in JSON
-    # survey_df = pd.DataFrame(content["result"])
-   
-    # #set column names of dataframe
-   
-    # survey_df.insert(0, "Survey_ID", 'null')
-    # survey_df["Survey_ID"] = survey_id
-    # survey_df.columns = ["Survey_ID", "value", "Data_Type", "Chart_Type", "Correct"]
-    # print (survey_df)
+
     print(feedback1)
     print('sql started')
-
-    feedback1 = feedback1[["Survey_ID", "value", "Data_Type", "Chart_Type", "Correct"]]
-    print(feedback1)
     
-    #write surve.df to SQL 
+    #write feedback.df to SQL 
     feedback1.to_sql(con=conn, name='survey_results', if_exists='append', index=False)
     #session.commit()
     print('sql fired')
@@ -383,7 +363,7 @@ def feedback_func(rvalue):
             if radioval[0] == 'y':
                 feedback = dict(
                     Survey_ID=generateSecureRandomString(),
-                    value='data_upload_response',
+                    value='feedbk',
                     Data_Type=datatype,
                     Chart_Type=radioval[1],
                     Correct=1
@@ -396,7 +376,7 @@ def feedback_func(rvalue):
             elif radioval[0] == 'n':
                 feedback = dict(
                     Survey_ID=generateSecureRandomString(),
-                    value='data_upload_response',
+                    value='feedbk',
                     Data_Type=datatype,
                     Chart_Type=radioval[1],
                     Correct=0
@@ -490,6 +470,21 @@ app.layout = html.Div([
 
 
     html.Div(id='auto-graph-radio1-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio2-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio3-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio4-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio5-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio6-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio7-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio8-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio9-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio10-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio11-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio12-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio13-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio14-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio15-output', style = {'display': 'none'}),
+    html.Div(id='auto-graph-radio16-output', style = {'display': 'none'}),
  
 
     html.Div(id='dropdown-values2'),
@@ -1198,12 +1193,237 @@ def update_columns2(n_clicks, ddvalues,
 @app.callback(
                 Output('auto-graph-radio1-output', 'children'),
                 [
-                # Input('auto-graph-radio1', 'n_click'),
                 Input('auto-graph-radio1', 'value')
                 ]
             )
 
 def radio_output1(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+#feedback button2
+@app.callback(
+                Output('auto-graph-radio2-output', 'children'),
+                [
+                Input('auto-graph-radio2', 'value')
+                ]
+            )
+
+def radio_output2(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+#feedback button3
+@app.callback(
+                Output('auto-graph-radio3-output', 'children'),
+                [
+                Input('auto-graph-radio3', 'value')
+                ]
+            )
+
+def radio_output3(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+#feedback button4
+@app.callback(
+                Output('auto-graph-radio4-output', 'children'),
+                [
+                Input('auto-graph-radio4', 'value')
+                ]
+            )
+
+def radio_output4(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+#feedback button5
+@app.callback(
+                Output('auto-graph-radio5-output', 'children'),
+                [
+                Input('auto-graph-radio5', 'value')
+                ]
+            )
+
+def radio_output5(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+#feedback button6
+@app.callback(
+                Output('auto-graph-radio6-output', 'children'),
+                [
+                Input('auto-graph-radio6', 'value')
+                ]
+            )
+
+def radio_output6(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+#feedback button7
+@app.callback(
+                Output('auto-graph-radio7-output', 'children'),
+                [
+                Input('auto-graph-radio7', 'value')
+                ]
+            )
+
+def radio_output7(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+#feedback button8
+@app.callback(
+                Output('auto-graph-radio8-output', 'children'),
+                [
+                Input('auto-graph-radio8', 'value')
+                ]
+            )
+
+def radio_output8(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+#feedback button9
+@app.callback(
+                Output('auto-graph-radio9-output', 'children'),
+                [
+                Input('auto-graph-radio9', 'value')
+                ]
+            )
+
+def radio_output9(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+
+#feedback button10
+@app.callback(
+                Output('auto-graph-radio10-output', 'children'),
+                [
+                Input('auto-graph-radio10', 'value')
+                ]
+            )
+
+def radio_output10(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+
+#feedback button11
+@app.callback(
+                Output('auto-graph-radio11-output', 'children'),
+                [
+                Input('auto-graph-radio11', 'value')
+                ]
+            )
+
+def radio_output11(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+
+#feedback button12
+@app.callback(
+                Output('auto-graph-radio12-output', 'children'),
+                [
+                Input('auto-graph-radio12', 'value')
+                ]
+            )
+
+def radio_output12(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+
+    #feedback button13
+@app.callback(
+                Output('auto-graph-radio13-output', 'children'),
+                [
+                Input('auto-graph-radio13', 'value')
+                ]
+            )
+
+def radio_output13(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+#feedback button14
+@app.callback(
+                Output('auto-graph-radio14-output', 'children'),
+                [
+                Input('auto-graph-radio14', 'value')
+                ]
+            )
+
+def radio_output14(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+#feedback button15
+@app.callback(
+                Output('auto-graph-radio15-output', 'children'),
+                [
+                Input('auto-graph-radio15', 'value')
+                ]
+            )
+
+def radio_output15(
+                radiovalue
+                ):
+
+    feedback_func(radiovalue)
+
+
+#feedback button16
+@app.callback(
+                Output('auto-graph-radio16-output', 'children'),
+                [
+                Input('auto-graph-radio16', 'value')
+                ]
+            )
+
+def radio_output16(
                 radiovalue
                 ):
 
