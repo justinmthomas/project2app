@@ -2,6 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
 import plotly.express as px
+import dash_table
 
 
 def bar_function(x,y): 
