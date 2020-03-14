@@ -350,7 +350,6 @@ def decision_func(d):
 
     return fp
 
-
 def feedback_func(rvalue):
 
     try:
