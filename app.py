@@ -346,9 +346,10 @@ def decision_func(d):
         if v[0] == "N":
             del fp[k]   
 
+    print(fp)
+
     return fp
 
-    print(fp)
 
 def feedback_func(rvalue):
 
