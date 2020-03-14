@@ -4,20 +4,20 @@ import pandas as pd
 
 
 def decision(chart_type):
-    url="https://gwprojectflask.herokuapp.com/api/data/raw_results"
+    url="https://gwprojectflask.herokuapp.com/api/data/all_raw_results"
     df = pd.read_json(url)
 
 
     df_data=df[['Data_Type','Correct']]
     df_target=df['Chart_Type']
     df_target.unique()
-
+  
 
     df_data_dummies = pd.get_dummies(df_data)
-    df_data_dummies.head()
+   
 
 
-    data_names = ['Number Correct','DimensionVsMeasure','Comparison','Dimension(Location)VsMeasure','Dimension(Time)VsMeasure','MeasureVsMeasure']
+    data_names = ['Number Correct','Mapping','DimensionVsMeasure','Comparison','Dimension(Location)VsMeasure','Dimension(Time)VsMeasure','MeasureVsMeasure']
     target_names = df_target.unique()
 
 
@@ -29,6 +29,4 @@ def decision(chart_type):
     print(prediction)
 
     return prediction
-
-
 

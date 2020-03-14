@@ -321,19 +321,25 @@ def decision_func(d):
 
     for k,v in fp.items():
         vlist = []
+        #'DimensionVsMeasure'
         if v == "CATvsVAL":
-            a = dt.decision([1,1,0,0,0,0])
+            a = dt.decision([1,0,1,0,0,0,0])
+        #Mapping
         elif v == "CATvsLATvsLON":
-            # a = dt.decision([1,0,0,1,0,0])
-            a = ['Map']
+            a = dt.decision([1,1,0,0,0,0,0])
+            # a = ['Map']
+        #Dimension(Location)VsMeasure
         elif v == "LOCvsVAL":
-            a = dt.decision([1,0,0,1,0,0])
+            a = dt.decision([1,0,0,0,1,0,0])
+        #Dimension(Time)VsMeasure
         elif v == "DTEvsVAL":
-            a = dt.decision([1,0,0,0,1,0])
+            a = dt.decision([1,0,0,0,0,1,0])
+        #MeasureVsMeasure
         elif v == "VALvsVAL":
-            a = dt.decision([1,0,0,0,0,1])
+            a = dt.decision([1,0,0,0,0,0,1])
+        #'Comparison'
         elif v == "VALvsBOL" or v == "CATvsBOL":
-            a = dt.decision([1,0,1,0,0,0])
+            a = dt.decision([1,0,0,1,0,0,0])
         else:
             a = "None"
         vlist.append(a[0])
