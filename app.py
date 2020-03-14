@@ -144,14 +144,14 @@ def getAllRaw_SurveyResults():
 @server.route("/api/data/newresults", methods=["GET", "POST"])
 def getNewSurveyResults():
     newResults = pd.read_sql(
-        "SELECT COUNT(Distinct Survey_ID) AS numberOFattempts, COUNT(Value) AS questionsAnswered, (SUM(correct) / COUNT(*)) * 100 AS pctCorrect, SUM(correct) AS numCorrect, SUM(correct != 1) as numIncorrect,  SUM(correct)/COUNT(Distinct Survey_ID) AS avgScore FROM survey_results.survey_results", conn)
+        "SELECT COUNT(Distinct Survey_ID) AS numberOFattempts, COUNT(Value) AS questionsAnswered, (SUM(correct) / COUNT(*)) * 100 AS pctCorrect, SUM(correct) AS numCorrect, SUM(correct != 1) as numIncorrect,  SUM(correct)/COUNT(Distinct Survey_ID) AS avgScore FROM survey_results.survey_results where value!='feedbk'", conn)
     return newResults.to_json(orient='records')
 
 
 @server.route("/api/data/resultsavg", methods=["GET", "POST"])
 def getAvgSurveyResults():
     avgResults = pd.read_sql(
-        "select value as Question_Num, Data_Type, Chart_Type, sum(Correct) AS numCorrect, (sum(Correct) / (COUNT(Distinct Survey_ID))) * 100 As percent_correct from survey_results.survey_results group by value", conn)
+        "select value as Question_Num, Data_Type, Chart_Type, sum(Correct) AS numCorrect, (sum(Correct) / (COUNT(Distinct Survey_ID))) * 100 As percent_correct from survey_results.survey_results where value!='feedbk' group by value", conn)
     return avgResults.to_json(orient='records')
 
 @server.route('/upload', methods=['GET', 'POST'])
