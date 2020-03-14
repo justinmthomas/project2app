@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def decision(chart_type):
-    url="https://gwprojectflask.herokuapp.com/api/data/all_raw_results"
+    url="https://gwprojectflask.herokuapp.com/api/data/raw_results"
     df = pd.read_json(url)
 
 
